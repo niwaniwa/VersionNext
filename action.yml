@@ -3,6 +3,10 @@ description: "This software automatically calculates the next version from an ar
 author: "niwaniwa"
 # version=1.0.0
 
+outputs:
+  next-version:
+    description: "The next calculated semantic version."
+
 inputs:
   version-input:
     description: "An array of semantic versioning strings (e.g., 2.3.1, 2.4.0-rc.1, 2.3.2-beta.1) "
@@ -37,4 +41,5 @@ runs:
         else
           ${{ github.action_path }}/version-next -v ${{ inputs.version-input }}
         fi
+        echo "next-version=$result" >> $GITHUB_OUTPUT
       shell: bash
