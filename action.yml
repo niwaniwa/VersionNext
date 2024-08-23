@@ -1,6 +1,7 @@
 name: "Version Next"
 description: "This software automatically calculates the next version from an array of semantic versioning strings, following SemVer rules."
 author: "niwaniwa"
+# version=1.0.0
 
 inputs:
   version-input:
