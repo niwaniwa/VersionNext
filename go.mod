@@ -1,3 +1,3 @@
-module golang-new-project-template
+module VersionNext
 
 go 1.23.0
