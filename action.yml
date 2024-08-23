@@ -1,0 +1,23 @@
+name: "Version Next"
+description: "This software automatically calculates the next version from an array of semantic versioning strings, following SemVer rules."
+author: "niwaniwa"
+
+inputs:
+  version-input:
+    description: "An array of semantic versioning strings (e.g., 2.3.1, 2.4.0-rc.1, 2.3.2-beta.1) "
+    required: true
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: clone
+      run: |
+        git clone https://github.com/niwaniwa/VersionNext.git
+        cd VersionNext
+        go build -ldflags="-s -w" -o ${{ github.action_path }}/VersionNext main.go
+      shell: bash
+
+    - name: run
+      run: ${{ github.action_path }}/VersionNext
+      shell: bash
