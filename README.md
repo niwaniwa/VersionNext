@@ -1,0 +1,1 @@
+# golang-new-project-template
