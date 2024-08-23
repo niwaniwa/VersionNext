@@ -19,5 +19,5 @@ runs:
       shell: bash
 
     - name: run
-      run: ${{ github.action_path }}/VersionNext
+      run: ${{ github.action_path }}/VersionNext -v ${{ inputs.version-input }}
       shell: bash
