@@ -9,25 +9,32 @@ inputs:
     required: true
     default: ""
   release-type:
-    description: "The type of release (alpha, beta, rc, or release)"
+    type: choice
+    description: "The type of release (none, alpha, beta, rc, or release)"
     required: false
-    default: ""
+    default: "none"
+    options:
+      - none
+      - alpha
+      - beta
+      - rc
+      - release
 
 runs:
   using: "composite"
   steps:
     - name: clone
       run: |
-        git clone https://github.com/niwaniwa/VersionNext.git
-        cd VersionNext
-        go build -ldflags="-s -w" -o ${{ github.action_path }}/VersionNext main.go
+        git clone git@github.com:niwaniwa/version-next.git
+        cd version-next
+        go build -ldflags="-s -w" -o ${{ github.action_path }}/version-next main.go
       shell: bash
 
     - name: run
       run: |
-        if [ -n "${{ inputs.release-type }}" ]; then
-          ${{ github.action_path }}/VersionNext -v ${{ inputs.version-input }} -r ${{ inputs.release-type }}
+        if [ "${{ inputs.release-type }}" != "none" ]; then
+          ${{ github.action_path }}/version-next -v ${{ inputs.version-input }} -r ${{ inputs.release-type }}
         else
-          ${{ github.action_path }}/VersionNext -v ${{ inputs.version-input }}
+          ${{ github.action_path }}/version-next -v ${{ inputs.version-input }}
         fi
       shell: bash

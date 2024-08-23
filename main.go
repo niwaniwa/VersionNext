@@ -40,6 +40,6 @@ func main() {
 		version = versionHandler.BumpUpVersion(version)
 	}
 
-	fmt.Println("New version:", version.String())
+	fmt.Println(version.String())
 
 }
