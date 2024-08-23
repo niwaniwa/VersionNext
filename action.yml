@@ -7,6 +7,10 @@ inputs:
     description: "An array of semantic versioning strings (e.g., 2.3.1, 2.4.0-rc.1, 2.3.2-beta.1) "
     required: true
     default: ""
+  release-type:
+    description: "The type of release (alpha, beta, rc, or release)"
+    required: false
+    default: ""
 
 runs:
   using: "composite"
@@ -19,5 +23,10 @@ runs:
       shell: bash
 
     - name: run
-      run: ${{ github.action_path }}/VersionNext -v ${{ inputs.version-input }}
+      run: |
+        if [ -n "${{ inputs.release-type }}" ]; then
+          ${{ github.action_path }}/VersionNext -v ${{ inputs.version-input }} -r ${{ inputs.release-type }}
+        else
+          ${{ github.action_path }}/VersionNext -v ${{ inputs.version-input }}
+        fi
       shell: bash
