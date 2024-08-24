@@ -1,10 +1,10 @@
 package handler
 
 import (
-	"VersionNext/pkg/entity"
 	"errors"
 	"strconv"
 	"strings"
+	"version-next/pkg/entity"
 )
 
 type VersionHandler struct {

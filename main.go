@@ -1,10 +1,10 @@
 package main
 
 import (
-	"VersionNext/pkg/entity"
-	"VersionNext/pkg/handler"
 	"flag"
 	"fmt"
+	"version-next/pkg/entity"
+	"version-next/pkg/handler"
 )
 
 func main() {

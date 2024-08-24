@@ -1,9 +1,9 @@
 package handler_test
 
 import (
-	"VersionNext/pkg/entity"
-	"VersionNext/pkg/handler"
 	"testing"
+	"version-next/pkg/entity"
+	"version-next/pkg/handler"
 )
 
 func TestParseVersion(t *testing.T) {
