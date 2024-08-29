@@ -78,7 +78,6 @@ func (vh *VersionHandler) BumpUpPreReleaseType(version entity.Version, preReleas
 	if version.PreRelease.Type == entity.None && preReleaseType != entity.None {
 		version = vh.BumpUpVersion(version)
 		version = vh.bumpUpPreReleaseType(version, preReleaseType)
-		version = vh.bumpUpPreReleaseIndex(version)
 		return version
 	}
 
@@ -112,9 +111,9 @@ func (vh *VersionHandler) bumpUpPreReleaseType(version entity.Version, releaseTy
 
 func (vh *VersionHandler) ValidateNoVersionRollback(version entity.Version, targetReleaseType entity.PreReleaseType) bool {
 	allowedTransitions := map[entity.PreReleaseType][]entity.PreReleaseType{
-		entity.Alpha: {entity.Beta, entity.Rc, entity.None},
-		entity.Beta:  {entity.Rc, entity.None},
-		entity.Rc:    {entity.None},
+		entity.Alpha: {entity.Alpha, entity.Beta, entity.Rc, entity.None},
+		entity.Beta:  {entity.Beta, entity.Rc, entity.None},
+		entity.Rc:    {entity.Rc, entity.None},
 	}
 
 	allowed, exists := allowedTransitions[version.PreRelease.Type]

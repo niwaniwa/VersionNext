@@ -35,7 +35,11 @@ func main() {
 
 	if *bumpUpReleaseType != "" {
 		parsedType := entity.ParsePreReleaseType(*bumpUpReleaseType)
-		version = versionHandler.BumpUpPreReleaseType(version, parsedType)
+		if version.PreRelease.Type == parsedType {
+			version = versionHandler.BumpUpVersion(version)
+		} else {
+			version = versionHandler.BumpUpPreReleaseType(version, parsedType)
+		}
 	} else {
 		version = versionHandler.BumpUpVersion(version)
 	}

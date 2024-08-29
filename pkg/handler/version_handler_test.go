@@ -119,19 +119,24 @@ func TestBumpUpPreRelease(t *testing.T) {
 			expected:     "2.4.0-rc.1",
 			releaseType:  entity.Rc,
 		},
+		"BumpUpPreReleaseRc-2": {
+			versionInput: "2.5.0-beta.3",
+			expected:     "2.5.0-rc.1",
+			releaseType:  entity.Rc,
+		},
 		"BumpUpRelease": {
-			versionInput: "2.5.0-rc.2",
-			expected:     "2.5.0",
+			versionInput: "2.6.0-rc.2",
+			expected:     "2.6.0",
 			releaseType:  entity.None,
 		},
 		"BumpUpNextPreRelease": {
-			versionInput: "2.6.0",
-			expected:     "2.6.1-beta.1",
+			versionInput: "2.7.0",
+			expected:     "2.7.1-beta.0",
 			releaseType:  entity.Beta,
 		},
 		"BumpUpNextPreRelease-2": {
-			versionInput: "2.7.0",
-			expected:     "2.7.1-alpha.1",
+			versionInput: "2.8.0",
+			expected:     "2.8.1-alpha.0",
 			releaseType:  entity.Alpha,
 		},
 	}
