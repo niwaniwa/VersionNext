@@ -42,11 +42,7 @@ runs:
     - name: run
       id: get-version
       run: |
-        if [ "${{ inputs.release-type }}" != "none" ]; then
-          result=$(${{ github.action_path }}/version-next -v ${{ inputs.version-input }} -r ${{ inputs.release-type }})
-        else
-          result=$(${{ github.action_path }}/version-next -v ${{ inputs.version-input }})
-        fi
+        result=$(${{ github.action_path }}/version-next -v ${{ inputs.version-input }} -r ${{ inputs.release-type }})
         echo $result
         echo "next_version=$(echo $result)" >> $GITHUB_OUTPUT
       shell: bash
